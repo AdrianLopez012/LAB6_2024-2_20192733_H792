@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Directores</title>
+    </head>
+    <body>
+        <div th:replace="fragments/navbar :: body"></div>
+
+        <h2>Lista de Directores</h2>
+        <a th:href="@{/directores/form}">Crear Director</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Nacionalidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="director : ${directores}">
+                    <td th:text="${director.nombre}"></td>
+                    <td th:text="${director.telefono}"></td>
+                    <td th:text="${director.nacionalidad}"></td>
+                    <td>
+                        <a th:href="@{/directores/edit/{id}(id=${director.id})}">Editar</a>
+                        <a th:href="@{/directores/delete/{id}(id=${director.id})}" onclick="return confirm('¿Estás seguro de eliminar este director?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

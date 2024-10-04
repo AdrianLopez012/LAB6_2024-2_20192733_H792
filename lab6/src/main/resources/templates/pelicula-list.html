@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Películas</title>
+    </head>
+    <body>
+        <div th:replace="fragments/navbar :: body"></div>
+
+        <h2>Lista de Películas</h2>
+        <a th:href="@{/peliculas/form}">Crear Película</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha de Estreno</th>
+                    <th>Duración</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pelicula : ${peliculas}">
+                    <td th:text="${pelicula.titulo}"></td>
+                    <td th:text="${pelicula.fechaEstreno}"></td>
+                    <td th:text="${pelicula.duracionMinutos}"></td>
+                    <td>
+                        <a th:href="@{/peliculas/edit/{id}(id=${pelicula.id})}">Editar</a>
+                        <a th:href="@{/peliculas/delete/{id}(id=${pelicula.id})}" onclick="return confirm('¿Estás seguro de eliminar esta película?');">Eliminar</a>
+                        <a th:href="@{/peliculas/detalle/{id}(id=${pelicula.id})}">Detalle</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

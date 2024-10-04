@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div th:replace="fragments/navbar :: body"></div>
+        <form action="#" th:action="@{/peliculas/save}" th:object="${pelicula_}" method="post">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" th:field="*{titulo}">
+            <div th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+
+            <label for="fechaEstreno">Fecha de Estreno:</label>
+            <input type="date" id="fechaEstreno" th:field="*{fechaEstreno}">
+            <div th:if="${#fields.hasErrors('fechaEstreno')}" th:errors="*{fechaEstreno}"></div>
+
+            <label for="duracionMinutos">Duración (minutos):</label>
+            <input type="number" id="duracionMinutos" th:field="*{duracionMinutos}">
+            <div th:if="${#fields.hasErrors('duracionMinutos')}" th:errors="*{duracionMinutos}"></div>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+    </body>
+</html>

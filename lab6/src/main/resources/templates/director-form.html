@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div th:replace="fragments/navbar :: body"></div>
+        <form action="#" th:action="@{/directores/save}" th:object="${director}" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}">
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" th:field="*{telefono}">
+            <div th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+
+            <label for="nacionalidad">Nacionalidad:</label>
+            <select id="nacionalidad" th:field="*{nacionalidad}">
+                <option value="Peru">Peru</option>
+                <option value="Argentina">Argentina</option>
+            </select>
+            <div th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}"></div>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+    </body>
+</html>
